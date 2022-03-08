@@ -7,9 +7,9 @@
 # 0.05
 
 ###
-ph1 = read.csv('c:/ph1.csv')
-ph2 = read.csv('c:/ph2.csv')
-ph2_out = read.csv('c:/ph2_out.csv')
+ph1 = read.csv('C:/Users/lhk65/OneDrive/Desktop/Data/ph1.csv')
+ph2 = read.csv('C:/Users/lhk65/OneDrive/Desktop/Data/ph2.csv')
+ph2_out = read.csv('C:/Users/lhk65/OneDrive/Desktop/Data/ph2_out.csv')
 
 str(ph1)
 ph1 = ph1[,8:49]
