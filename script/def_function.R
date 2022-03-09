@@ -58,3 +58,23 @@ ksk2 = function(tr,te,k){
   ret = list(or.mat=or.mat)
   return(ret)
 }
+
+###############################
+
+score = function(t2,pred){
+  confusion_matrix = table(y_test_data,pred)
+  #cat(confusion_matrix,"\n","\n")
+  
+  accuracy = sum(diag(confusion_matrix))/sum(confusion_matrix)
+  Precision = confusion_matrix[2,2]/sum(confusion_matrix[2,])
+  Recall = confusion_matrix[2,2]/sum(confusion_matrix[,2])
+  f1score = 2*(Precision*Recall)/(Precision+Recall)
+  cat("accuracy: ",accuracy,"\nPrecision: ",Precision,"\nRecall: ",Recall,"\n")
+  cat("F1-score: ",f1score,"\n")
+  
+  error_rate = 1 - accuracy
+  cat("error_rate:",error_rate,"\n")
+  
+  auc = performance(prediction(pred,t2),measure = "auc")
+  cat("AUC: ", auc@y.values[[1]])   
+}
