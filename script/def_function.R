@@ -13,7 +13,7 @@ fasthtsq=
     CL = qf(1-alpha,dim,obs - dim)*(dim*(obs+1)*(obs-1)/(obs*(obs-dim)));
     
     
-    sinv = ginv(cov(trdat));   ######상황에 따라 ginv - solve 변환######
+    sinv = solve(cov(trdat));   ######상황에 따라 ginv - solve 변환######
     
     
     mu_mat = repmat(mu, nrow(tedat),1);
@@ -47,9 +47,9 @@ ksk2 = function(tr,te,k){
   }
   
   
-  #gap_mat = gap_mat%*%ginv(cov(gap_mat))      ######상황에 따라 ginv - solve 변환######
+  gap_mat = gap_mat%*%solve(cov(gap_mat))      ######상황에 따라 ginv - solve 변환######
   gap_mat = abs(gap_mat)
-  gap_mat = scale(gap_mat)
+  #gap_mat = scale(gap_mat)
   cm.gap_mat = colMeans(gap_mat)
   cm.gap_mat = as.matrix(cm.gap_mat)
   or.mat = cbind(cm.gap_mat,c(1:ncol(tr)))
