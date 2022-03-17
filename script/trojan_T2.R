@@ -26,6 +26,9 @@ trojan_train <-trojan_train[ , which(apply(trojan_train, 2, var) != 0)]
 trojan_Ta <-trojan_Ta[ , which(apply(trojan_Ta, 2, var) != 0)]
 trojan_Ba <-trojan_Ba[ , which(apply(trojan_Ba, 2, var) != 0)]
 
+trojan_train <-trojan_train[ , colMeans(trojan_train) >= 1]
+trojan_Ta <-trojan_Ta[ ,  colMeans(trojan_Ta) >= 1]
+trojan_Ba <-trojan_Ba[ ,  colMeans(trojan_Ba) >= 1]
 
 trojan_train_pca = prcomp(trojan_train,scale=T)
 plot(trojan_train_pca$x[,1:2])
@@ -33,6 +36,9 @@ plot(trojan_train_pca$x[,1:2])
 trojan_Ba_pca = prcomp(trojan_Ba,scale=T)
 points(trojan_Ba_pca$x[,1:2],col='red')
 cor(trojan_Ba)
+
+plot(colMeans(trojan_train),type='o' ,ylim=c(0,2))
+points(colMeans(trojan_Ba),type='o',col='red')
 ###############
 trojan_total = rbind(trojan_Ta,trojan_Ba)
 trojan_t2 = fasthtsq(trojan_train,trojan_total,0.05)
