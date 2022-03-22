@@ -8,10 +8,7 @@ seller = data.frame(x = c(1,4,8),
 
 row.names(seller) = c('Axy','Bxy','Cxy')
 
-######################
-str(site)
-seller
-
+##### seller에서 site까지의 거리 #####
 distance = function(seller,site){
   dist_mat = matrix(0,10,1)
   for(i in 1:10){
@@ -21,21 +18,25 @@ distance = function(seller,site){
   return(dist_mat)
 }
 
-a = distance(seller,site)
-a = as.data.frame(a)
-rownames(a) = c('A','B','C')
-colnames(a) = c(1:10)
-a = a/seller$history
-a = t(a)
-a
+##### distance에서 구한값을 t()로 행열을 전환시키고 seller의 histry로 나누어준다 #####
+min_dist = function(seller,site){
+  a = distance(seller,site)
+  a = as.data.frame(a)
+  rownames(a) = c('A','B','C')
+  colnames(a) = c(1:10)
+  a = a/seller$history
+  a = t(a)
+}
 
-who = function(dis){
-  crimescene = data.frame(who = nrow(dis))
+##### crimescene 데이터프레임을 만들고 거리의 최소값에 해당하는 seller로 분류한다. #####
+who = function(seller,site){
+  min_dist = min_dist(seller,site)
+  crimescene = data.frame(who = nrow(min_dist))
   for(i in 1:10){
-    b = names(which.min(dis[i,]))
+    b = names(which.min(min_dist[i,]))
     crimescene[i,] = b
   }
   return(crimescene)
 }
 
-who(a)
+who(seller,site)
