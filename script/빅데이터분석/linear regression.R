@@ -2,7 +2,7 @@
 data = iris
 
 fix(data)
-
+head(data)
 summary(data)
 
 fit = lm(data$Petal.Width~data$Sepal.Length+data$Sepal.Width+data$Petal.Length, data=data)
