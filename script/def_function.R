@@ -1,3 +1,37 @@
+tsquare = function(tr,te,te_out,num){
+  te_total = rbind(te,te_out)
+  tr_t2 = fasthtsq(tr,te_total,0.05)
+  obs = nrow(tr)/2
+  obs2 = obs+1
+  obs3 = nrow(tr)
+  plot(tr_t2$Tsq_mat,ylim=c(0,num))
+  abline(v=c(obs),col='blue',lwd=3)
+  abline(h=c(tr_t2$CL),col='red',lwd=3,lty=2)
+  
+  #1사분면
+  alpha_er = sum(tr_t2$Tsq_mat[1:obs]>tr_t2$CL)/obs #Alpha error
+  #4사분면
+  beta_er = sum(tr_t2$Tsq_mat[obs2:obs3]<tr_t2$CL)/obs #Beta error
+  
+  #Accuracy 정분류율
+  tp = sum(tr_t2$Tsq_mat[1:obs]<tr_t2$CL)
+  tn = sum(tr_t2$Tsq_mat[obs2:obs3]>tr_t2$CL)
+  fn = sum(tr_t2$Tsq_mat[1:obs]>tr_t2$CL)
+  fp = sum(tr_t2$Tsq_mat[obs2:obs3]<tr_t2$CL)
+  acc = (tn+tp)/(tn+tp+fn+fp)
+  
+  result = list(alpha = alpha_er, beta = beta_er, ACC = acc)
+  return(result)
+}
+
+Ttest = function(te,te_out){
+  Ttest <- c()
+  for (i in 1:dim(te)[2]) {
+    Ttest[i] <- t.test(te[,i], te_out[,i])$p.value
+  }
+  which(Ttest<0.05)
+}
+
 fasthtsq=
   function(trdat, tedat, alpha) {
     library(MASS)
