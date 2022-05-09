@@ -16,7 +16,7 @@ covid_tr = covid_tr[,c(1:4,6:7,10:12)]#14:18)]
 covid_t = covid_t[,c(1:4,6:7,10:12)]
 covid_f = covid_f[,c(1:4,6:7,10:12)]
 
-ksk2(covid_t,covid_f,30000)
+ksk2(covid_tr,covid_f,30000)
 covid_tr = covid_tr[,c(1,2,3,4,11)]
 covid_t = covid_t[,c(1,2,3,4,11)]
 covid_f = covid_f[,c(1,2,3,4,11)]

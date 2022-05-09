@@ -22,9 +22,9 @@ disease_tr = disease_tr[,c(1:8,10:21)]
 disease_t = disease_t[,c(1:8,10:21)]
 disease_f = disease_f[,c(1:8,10:21)]
 
-ksk2(disease_t,disease_f,30000)
-disease_tr = disease_tr[,c(15,16,4,19,21,20,14,7,5,9)]
-disease_t = disease_t[,c(15,16,4,19,21,20,14,7,5,9)]
-disease_f = disease_f[,c(15,16,4,19,21,20,14,7,5,9)]
+ksk2(disease_tr,disease_f,50000)
+disease_tr = disease_tr[,c(15,16,4,19,21,20,7,14,5,9,18,8,2,10,1)]
+disease_t = disease_t[,c(15,16,4,19,21,20,7,14,5,9,18,8,2,10,1)]
+disease_f = disease_f[,c(15,16,4,19,21,20,7,14,5,9,18,8,2,10,1)]
 
 tsquare(disease_tr,disease_t,disease_f,100)
