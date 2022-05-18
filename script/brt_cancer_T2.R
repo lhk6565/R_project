@@ -3,25 +3,26 @@ breast_cancer = read.csv('C:/Users/lhk65/OneDrive/Desktop/Data/breast-cancer.csv
 brt_cancer_M = breast_cancer[breast_cancer$diagnosis=='M',]
 brt_cancer_B = breast_cancer[breast_cancer$diagnosis=='B',]
 
-brt_cancer_test = brt_cancer_B[1:300,]
-brt_cancer_B = brt_cancer_B[1:150,3:32]
-brt_cancer_M = brt_cancer_M[1:150,3:32]
-brt_cancer_test = brt_cancer_test[,3:32]
+sample_tr =  sample(1:nrow(brt_cancer_B),300)
+sample_t =  sample(1:nrow(brt_cancer_B),150)
+sample_f =  sample(1:nrow(brt_cancer_M),150)
 
+brt_tr = brt_cancer_B[sample_tr,3:32]
+brt_B = brt_cancer_B[sample_t,3:32]
+brt_M = brt_cancer_M[sample_f,3:32]
 
-brt_total = rbind(brt_cancer_B,brt_cancer_M)
+Ttest(brt_B,brt_M)
+brt_tr = brt_tr[,c(1:9,11,13:14,16:18,21:30)]
+brt_B = brt_B[,c(1:9,11,13:14,16:18,21:30)]
+brt_M = brt_M[,c(1:9,11,13:14,16:18,21:30)]
 
-brt_t2 = fasthtsq(brt_cancer_test,brt_total,0.05)
+ksk2(brt_tr,brt_M,1000)
+brt_tr = brt_tr[,c(28,1,26,21,3,25,23,5,22,6,4,9,27,7,2)]
+brt_B = brt_B[,c(28,1,26,21,3,25,23,5,22,6,4,9,27,7,2)]
+brt_M = brt_M[,c(28,1,26,21,3,25,23,5,22,6,4,9,27,7,2)]
 
-plot(brt_t2$Tsq_mat,ylim=c(0,3000))
-abline(v=c(150),col='blue',lwd=3)
-abline(h=c(brt_t2$CL),col='red',lwd=3,lty=2)
+tsquare(brt_tr,brt_B,brt_M,500)
 
-#1사분면
-sum(brt_t2$Tsq_mat[1:150]>brt_t2$CL)/150 #Alpha error
-
-#4사분면
-sum(brt_t2$Tsq_mat[151:300]<brt_t2$CL)/150 #Beta error
 ########
 
 #fasthtsq

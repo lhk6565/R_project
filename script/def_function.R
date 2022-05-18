@@ -74,7 +74,8 @@ fasthtsq=
 ###############################
 
 fast_t2 = function(tr,te,alpha){
-  
+  library(MASS)
+  library(pracma)
   
   s1 = rbind(tr,te)
   s2 = solve(cov(tr))

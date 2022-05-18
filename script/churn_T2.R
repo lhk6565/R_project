@@ -16,9 +16,9 @@ churn_tr = churn_tr[,c(1:2,4:5,7,11:14)]
 churn_f = churn_f[,c(1:2,4:5,7,11:14)]
 churn_t = churn_t[,c(1:2,4:5,7,11:14)]
 
-ksk2(churn_tr,churn_t,30000)
-churn_tr = churn_tr[,c(5,2,11,4,10,7,13)]
-churn_f = churn_f[,c(5,2,11,4,10,7,13)]
-churn_t = churn_t[,c(5,2,11,4,10,7,13)]
+ksk2(churn_tr,churn_t,300)
+churn_tr = churn_tr[,c(11,13,2,4,8,10,5,7,6)]
+churn_f = churn_f[,c(11,13,2,4,8,10,5,7,6)]
+churn_t = churn_t[,c(11,13,2,4,8,10,5,7,6)]
 
 tsquare(churn_tr,churn_f,churn_t,100)
