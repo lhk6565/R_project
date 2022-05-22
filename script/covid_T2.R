@@ -21,4 +21,10 @@ covid_tr = covid_tr[,c(3,4,2,1,11,9,8,6,5)]
 covid_t = covid_t[,c(3,4,2,1,11,9,8,6,5)]
 covid_f = covid_f[,c(3,4,2,1,11,9,8,6,5)]
 
-tsquare(covid_tr,covid_t,covid_f,100)
+tsquare(covid_tr,covid_t,covid_f,200)
+covid_t2 = fast_t2(covid_tr,rbind(covid_t,covid_f),0.05)
+covid_t2
+plot(covid_t2$Tsq_mat[2001:4000],ylim=c(0,300),ylab="Distance",
+     xlab="",main="Covid-19_T-square distance")
+abline(v=c(1000),col='blue',lwd=3)
+abline(h=c(covid_t2$CL),col='red',lwd=3,lty=2)
